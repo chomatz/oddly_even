@@ -10,10 +10,12 @@
 #	tmux attach-session -d -t sesh
 #}
 
+default_session=dropdown
+
 tmux_binary="$(which tmux)"
 
 if [ -f "$tmux_binary" ]; then
-	$($tmux_binary attach-session -t '^') || $($tmux_binary new-session -s '^' -n 't(",t)')
+	$($tmux_binary attach-session -t "$default_session") || $($tmux_binary new-session -s "$default_session")
 else
 	echo "tmux binary not found"
 	$(which bash)
